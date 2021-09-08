@@ -6,6 +6,8 @@
       <list>
         <option value="$PROJECT_DIR$/pom.xml" />
         <option value="$PROJECT_DIR$/shared-kernel/pom.xml" />
+        <option value="$PROJECT_DIR$/product-management/pom.xml" />
+        <option value="$PROJECT_DIR$/repair-management/pom.xml" />
       </list>
     </option>
   </component>
