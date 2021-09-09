@@ -35,4 +35,8 @@ public class Repair extends AbstractEntity<RepairId> {
     public void updateServicer(@NonNull Servicer servicer) {
         this.servicer = servicer;
     }
+
+    public void updatePrice(@NonNull Money price) {
+        this.price = price;
+    }
 }

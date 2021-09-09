@@ -9,7 +9,7 @@ import javax.persistence.Embeddable;
 @Embeddable
 @Getter
 public class Model implements ValueObject {
-    private String modelName;
+    private final String modelName;
     public Model() {
         this.modelName = "";
     }

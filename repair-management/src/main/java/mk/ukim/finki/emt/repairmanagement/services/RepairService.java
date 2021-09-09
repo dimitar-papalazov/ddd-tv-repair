@@ -9,6 +9,7 @@ import mk.ukim.finki.emt.repairmanagement.domain.model.ServicerId;
 import mk.ukim.finki.emt.repairmanagement.services.form.RepairForm;
 import mk.ukim.finki.emt.repairmanagement.services.form.ServicerForm;
 
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
 
@@ -26,4 +27,6 @@ public interface RepairService {
     Optional<Servicer> findServicerById(ServicerId id);
 
     void updateServicer(RepairId repairId, ServicerId servicerId) throws RepairIdNotExistException, ServicerIdNotExistException;
+
+    Repair tvProductCreated(RepairId repairId, LocalDateTime dateTime,String manufacturer);
 }

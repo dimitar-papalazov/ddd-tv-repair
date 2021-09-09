@@ -14,10 +14,13 @@ import mk.ukim.finki.emt.repairmanagement.domain.repository.ServicerRepository;
 import mk.ukim.finki.emt.repairmanagement.services.RepairService;
 import mk.ukim.finki.emt.repairmanagement.services.form.RepairForm;
 import mk.ukim.finki.emt.repairmanagement.services.form.ServicerForm;
+import mk.ukim.finki.emt.sharedkernel.domain.financial.Currency;
+import mk.ukim.finki.emt.sharedkernel.domain.financial.Money;
 import org.springframework.stereotype.Service;
 
 import javax.validation.ConstraintViolationException;
 import javax.validation.Validator;
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
@@ -82,6 +85,29 @@ public class RepairServiceImpl implements RepairService {
                 servicerRepository.findById(servicerId).orElseThrow(ServicerIdNotExistException::new);
         r.updateServicer(s);
         repairRepository.saveAndFlush(r);
+    }
+
+    @Override
+    public Repair tvProductCreated(RepairId repairId, LocalDateTime dateTime,
+     String manufacturer) {
+        Repair r =
+                repairRepository.findById(repairId).orElseThrow(RepairNotFoundException::new);
+        if(r.getDateRepaired().isBefore(dateTime)) {
+            r.updatePrice(new Money(Currency.MKD, 0));
+        }
+        else {
+            if (manufacturer.equals("LG")) {
+                r.updatePrice(new Money(Currency.MKD, 2000));
+            }
+            else if (manufacturer.equals("Sony")) {
+                r.updatePrice(new Money(Currency.MKD, 3000));
+            }
+            else {
+                r.updatePrice(new Money(Currency.MKD, 1000));
+            }
+        }
+        repairRepository.saveAndFlush(r);
+        return r;
     }
 
     private Repair toDomainObject(RepairForm form) {

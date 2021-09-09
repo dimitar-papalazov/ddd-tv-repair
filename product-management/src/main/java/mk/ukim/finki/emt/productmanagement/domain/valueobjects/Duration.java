@@ -9,7 +9,7 @@ import javax.persistence.Embeddable;
 @Embeddable
 @Getter
 public class Duration implements ValueObject {
-    private Long durationInMonths;
+    private final Long durationInMonths;
     public Duration() {
         this.durationInMonths = 0L;
     }

@@ -9,7 +9,7 @@ import javax.persistence.Embeddable;
 @Embeddable
 @Getter
 public class Description implements ValueObject {
-    private String description;
+    private final String description;
     public Description() {
         this.description = "";
     }
